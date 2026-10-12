@@ -41,7 +41,7 @@ jobs:
           owner: ${{ github.repository_owner }}
 
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           # 需要持久化凭证: opencode action 内部会 git fetch origin <分支> 拉取 PR 代码
           persist-credentials: true
