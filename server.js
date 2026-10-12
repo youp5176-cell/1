@@ -11,6 +11,7 @@ const fileUpload = require('express-fileupload')
 const decode = require('safe-decode-uri-component')
 const logger = require('./util/logger.js')
 const { APP_CONF } = require('./util/config.json')
+const { injectSpeedInsights } = require('@vercel/speed-insights')
 
 /**
  * The version check result.
@@ -191,6 +192,9 @@ async function constructServer(moduleDefs) {
   const { CORS_ALLOW_ORIGIN } = process.env
   const allowOrigins = parseCorsAllowOrigins(CORS_ALLOW_ORIGIN)
   app.set('trust proxy', true)
+
+  // Inject Vercel Speed Insights
+  injectSpeedInsights()
 
   /**
    * Serving static files
